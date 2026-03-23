@@ -1,0 +1,25 @@
+# codegraft
+
+> Automatically synthesize LoRA adapters for open-source models trained on private library source code
+
+## Docs
+
+- [README](README.md): Overview, install, usage, API reference
+- [SPEC](SPEC.md): Original requirements and design
+
+## Source Files
+
+- [config.go](internal/config/config.go): Configuration management with Load/Save for JSON files, paths for library data and examples
+- [defaults.go](internal/config/defaults.go): Default values for all configuration parameters (Ollama URL, base model, ports, evolution depth, diversity threshold)
+- [store.go](internal/store/store.go): Store interface and data models for Symbol (API symbols), Example (training examples), and TuneJob (fine-tuning jobs)
+- [sqlite.go](internal/store/sqlite.go): File-based JSON storage implementation for persisting symbols, examples, and jobs
+
+## Key Concepts
+
+**Symbol**: Represents an extracted API element from source code (functions, methods, types, constants, variables, interfaces) with metadata including signature, docstring, file location, and call graph relationships.
+
+**Example**: A synthesized training example containing an instruction, optional input code, a response, and quality/diversity scores. Used for fine-tuning models.
+
+**TuneJob**: Tracks the state of a model fine-tuning operation, including base model, output model, example count, and job status (pending/running/done/failed).
+
+**Store Interface**: Provides persistence operations for symbols, examples, and jobs across a library, with list/get/save/delete operations.
