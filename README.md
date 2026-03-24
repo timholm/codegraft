@@ -9,7 +9,7 @@ Codegraft solves the problem that AI coding assistants cannot effectively use in
 ## Install
 
 ```bash
-go install github.com/factory/codegraft@latest
+go install github.com/timholm/codegraft@latest
 ```
 
 ## Usage
